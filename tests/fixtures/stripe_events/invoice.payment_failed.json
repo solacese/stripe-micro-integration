@@ -1,0 +1,27 @@
+{
+  "id": "evt_invoice_payment_failed",
+  "type": "invoice.payment_failed",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000006,
+  "data": {
+    "object": {
+      "id": "in_124",
+      "customer": "cus_124",
+      "subscription": "sub_124",
+      "amount_due": 3000,
+      "amount_paid": 0,
+      "status": "open",
+      "attempt_count": 2,
+      "lines": {
+        "data": [
+          {
+            "id": "line_2",
+            "amount": 3000,
+            "description": "Service fee"
+          }
+        ]
+      }
+    }
+  }
+}

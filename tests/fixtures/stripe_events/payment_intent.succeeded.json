@@ -1,0 +1,21 @@
+{
+  "id": "evt_payment_intent_succeeded",
+  "type": "payment_intent.succeeded",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000000,
+  "data": {
+    "object": {
+      "id": "pi_123",
+      "amount": 5000,
+      "currency": "usd",
+      "status": "succeeded",
+      "customer": "cus_123",
+      "payment_method": "pm_123",
+      "metadata": {
+        "order_id": "ord_123"
+      },
+      "last_payment_error": null
+    }
+  }
+}

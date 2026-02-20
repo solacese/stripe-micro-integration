@@ -1,0 +1,16 @@
+{
+  "id": "evt_customer_deleted",
+  "type": "customer.deleted",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000011,
+  "data": {
+    "object": {
+      "id": "cus_124",
+      "email": "deleted@example.com",
+      "name": "Deleted Customer",
+      "metadata": {},
+      "default_source": null
+    }
+  }
+}

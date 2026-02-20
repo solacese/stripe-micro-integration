@@ -1,0 +1,28 @@
+{
+  "id": "evt_checkout_completed",
+  "type": "checkout.session.completed",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000012,
+  "data": {
+    "object": {
+      "id": "cs_123",
+      "customer": "cus_123",
+      "mode": "payment",
+      "payment_status": "paid",
+      "amount_total": 5000,
+      "metadata": {
+        "cart_id": "cart_123"
+      },
+      "line_items": {
+        "data": [
+          {
+            "description": "Product A",
+            "quantity": 1,
+            "amount_total": 5000
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "evt_charge_succeeded",
+  "type": "charge.succeeded",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000007,
+  "data": {
+    "object": {
+      "id": "ch_123",
+      "amount": 5000,
+      "currency": "usd",
+      "status": "succeeded",
+      "outcome": {
+        "risk_level": "normal",
+        "risk_score": 10
+      }
+    }
+  }
+}

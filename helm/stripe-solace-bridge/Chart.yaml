@@ -1,0 +1,6 @@
+apiVersion: v2
+name: stripe-solace-bridge
+description: Stripe webhook to Solace bridge
+version: 0.1.0
+appVersion: "1.0.0"
+type: application

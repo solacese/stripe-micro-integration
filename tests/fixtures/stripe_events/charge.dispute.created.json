@@ -1,0 +1,19 @@
+{
+  "id": "evt_dispute_created",
+  "type": "charge.dispute.created",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000009,
+  "data": {
+    "object": {
+      "id": "dp_123",
+      "charge": "ch_123",
+      "amount": 5000,
+      "reason": "fraudulent",
+      "status": "warning_needs_response",
+      "evidence_details": {
+        "due_by": 1709000000
+      }
+    }
+  }
+}

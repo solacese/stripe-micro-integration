@@ -1,0 +1,19 @@
+{
+  "id": "evt_charge_failed",
+  "type": "charge.failed",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000008,
+  "data": {
+    "object": {
+      "id": "ch_124",
+      "amount": 5000,
+      "currency": "usd",
+      "status": "failed",
+      "outcome": {
+        "risk_level": "highest",
+        "risk_score": 80
+      }
+    }
+  }
+}

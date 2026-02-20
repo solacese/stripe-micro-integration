@@ -1,0 +1,21 @@
+{
+  "id": "evt_payment_intent_failed",
+  "type": "payment_intent.payment_failed",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000001,
+  "data": {
+    "object": {
+      "id": "pi_124",
+      "amount": 2000,
+      "currency": "usd",
+      "status": "requires_payment_method",
+      "customer": "cus_124",
+      "payment_method": "pm_124",
+      "metadata": {},
+      "last_payment_error": {
+        "code": "card_declined"
+      }
+    }
+  }
+}

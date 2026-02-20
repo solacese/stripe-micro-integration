@@ -1,0 +1,31 @@
+{{- if .Values.initJob.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: stripe-solace-bridge-provision
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: provision
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command:
+            - python
+            - scripts/provision_solace.py
+          env:
+            - name: SOLACE_SEMP_HOST
+              value: "{{ .Values.config.solace.host }}"
+            - name: SOLACE_VPN
+              value: "{{ .Values.config.solace.vpn }}"
+            - name: SOLACE_SEMP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.solace.usernameRef }}
+                  key: value
+            - name: SOLACE_SEMP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.solace.passwordRef }}
+                  key: value
+{{- end }}

@@ -1,0 +1,29 @@
+{
+  "id": "evt_subscription_created",
+  "type": "customer.subscription.created",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000002,
+  "data": {
+    "object": {
+      "id": "sub_123",
+      "customer": "cus_123",
+      "status": "active",
+      "current_period_start": 1708000000,
+      "current_period_end": 1708600000,
+      "plan": {
+        "id": "plan_basic"
+      },
+      "cancel_at_period_end": false,
+      "trial_end": null,
+      "items": {
+        "data": [
+          {
+            "id": "si_123",
+            "quantity": 1
+          }
+        ]
+      }
+    }
+  }
+}

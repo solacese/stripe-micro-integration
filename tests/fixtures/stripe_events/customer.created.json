@@ -1,0 +1,18 @@
+{
+  "id": "evt_customer_created",
+  "type": "customer.created",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000010,
+  "data": {
+    "object": {
+      "id": "cus_123",
+      "email": "test@example.com",
+      "name": "Test Customer",
+      "metadata": {
+        "segment": "pro"
+      },
+      "default_source": "card_123"
+    }
+  }
+}

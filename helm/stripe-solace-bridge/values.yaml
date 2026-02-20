@@ -1,0 +1,45 @@
+replicaCount: 1
+
+image:
+  repository: stripe-solace-bridge
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+config:
+  stripe:
+    webhookSecretRef: stripe-webhook-secret
+    apiKeyRef: stripe-api-key
+  solace:
+    host: tcp://solace-broker:55555
+    vpn: default
+    usernameRef: solace-username
+    passwordRef: solace-password
+  redis:
+    enabled: true
+    host: redis
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPU: 70
+
+ingress:
+  enabled: false
+  host: stripe-bridge.local
+  tls: false
+
+initJob:
+  enabled: true

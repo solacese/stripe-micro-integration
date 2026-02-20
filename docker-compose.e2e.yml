@@ -1,0 +1,16 @@
+services:
+  stripe-cli:
+    image: stripe/stripe-cli:latest
+    container_name: stripe-solace-bridge-stripe-cli
+    env_file:
+      - .env
+    depends_on:
+      app:
+        condition: service_started
+    command:
+      - /bin/sh
+      - -c
+      - |
+        stripe listen \
+          --api-key "$${STRIPE_API_KEY}" \
+          --forward-to "http://app:8080/webhooks/stripe"

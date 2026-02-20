@@ -1,0 +1,24 @@
+{
+  "id": "evt_subscription_deleted",
+  "type": "customer.subscription.deleted",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000004,
+  "data": {
+    "object": {
+      "id": "sub_123",
+      "customer": "cus_123",
+      "status": "canceled",
+      "current_period_start": 1708000000,
+      "current_period_end": 1708600000,
+      "plan": {
+        "id": "plan_basic"
+      },
+      "cancel_at_period_end": false,
+      "trial_end": null,
+      "items": {
+        "data": []
+      }
+    }
+  }
+}

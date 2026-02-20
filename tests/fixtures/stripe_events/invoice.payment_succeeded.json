@@ -1,0 +1,27 @@
+{
+  "id": "evt_invoice_payment_succeeded",
+  "type": "invoice.payment_succeeded",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000005,
+  "data": {
+    "object": {
+      "id": "in_123",
+      "customer": "cus_123",
+      "subscription": "sub_123",
+      "amount_due": 5000,
+      "amount_paid": 5000,
+      "status": "paid",
+      "attempt_count": 1,
+      "lines": {
+        "data": [
+          {
+            "id": "line_1",
+            "amount": 5000,
+            "description": "Monthly subscription"
+          }
+        ]
+      }
+    }
+  }
+}

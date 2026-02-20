@@ -1,0 +1,17 @@
+{
+  "id": "evt_payout_failed",
+  "type": "payout.failed",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000013,
+  "data": {
+    "object": {
+      "id": "po_123",
+      "amount": 7000,
+      "currency": "usd",
+      "status": "failed",
+      "arrival_date": 1708600000,
+      "failure_message": "Bank account closed"
+    }
+  }
+}

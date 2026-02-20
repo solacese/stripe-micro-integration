@@ -1,0 +1,27 @@
+{
+  "id": "evt_invoice_finalized",
+  "type": "invoice.finalized",
+  "account": "acct_test",
+  "api_version": "2023-10-16",
+  "created": 1708000014,
+  "data": {
+    "object": {
+      "id": "in_125",
+      "customer": "cus_125",
+      "subscription": "sub_125",
+      "amount_due": 1000,
+      "amount_paid": 0,
+      "status": "open",
+      "attempt_count": 0,
+      "lines": {
+        "data": [
+          {
+            "id": "line_3",
+            "amount": 1000,
+            "description": "Finalized invoice"
+          }
+        ]
+      }
+    }
+  }
+}

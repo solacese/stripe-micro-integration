@@ -1,0 +1,86 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: stripe-solace-bridge-app
+    env_file:
+      - ../.env
+    environment:
+      APP_PORT: 8080
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      SOLACE_HOST: ${SOLACE_HOST:-tcp://solace:55555}
+      SOLACE_SEMP_HOST: ${SOLACE_SEMP_HOST:-http://solace:8080}
+      SOLACE_TLS_ENABLED: ${SOLACE_TLS_ENABLED:-false}
+      SOLACE_TLS_CA_CERT_PATH: ${SOLACE_TLS_CA_CERT_PATH:-}
+    ports:
+      - "${HOST_APP_PORT:-8080}:8080"
+    depends_on:
+      redis:
+        condition: service_started
+
+  redis:
+    image: redis:7-alpine
+    container_name: stripe-solace-bridge-redis
+    ports:
+      - "6379:6379"
+
+  solace:
+    image: solace/solace-pubsub-standard:latest
+    container_name: stripe-solace-bridge-solace
+    shm_size: 1g
+    environment:
+      username_admin_globalaccesslevel: admin
+      username_admin_password: admin
+    ports:
+      - "55555:55555"
+      - "8080:8080"
+      - "5672:5672"
+      - "1883:1883"
+      - "80:80"
+
+  provision:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: stripe-solace-bridge-provision
+    env_file:
+      - ../.env
+    environment:
+      SOLACE_SEMP_HOST: ${SOLACE_SEMP_HOST:-http://solace:8080}
+      SOLACE_SEMP_USERNAME: ${SOLACE_SEMP_USERNAME:-admin}
+      SOLACE_SEMP_PASSWORD: ${SOLACE_SEMP_PASSWORD:-admin}
+      SOLACE_VPN: ${SOLACE_VPN:-default}
+    depends_on:
+      solace:
+        condition: service_started
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python - <<'PY'
+        import os
+        import time
+        import requests
+
+        host = os.getenv("SOLACE_SEMP_HOST", "http://solace:8080")
+        base = host.rstrip("/")
+        if not base.endswith("/SEMP/v2/config"):
+            base = f"{base}/SEMP/v2/config"
+
+        username = os.getenv("SOLACE_SEMP_USERNAME", "admin")
+        password = os.getenv("SOLACE_SEMP_PASSWORD", "admin")
+
+        for _ in range(60):
+            try:
+                response = requests.get(base, auth=(username, password), timeout=5)
+                if response.status_code == 200:
+                    break
+            except Exception:
+                pass
+            time.sleep(2)
+        else:
+            raise SystemExit("SEMP endpoint did not become ready")
+        PY
+        python scripts/provision_solace.py
+    restart: on-failure
